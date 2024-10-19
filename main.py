@@ -7,13 +7,13 @@ mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
 
 # Game variables
-width, height = 800, 600
+width, height = 400, 400
 paddle_width, paddle_height = 100, 20
 ball_radius = 10
 ball_speed = [15, -15]
 paddle_x = (width - paddle_width) // 2
 ball_x, ball_y = width // 2, height - 50
-bricks = [(x, y) for x in range(0, width, 80) for y in range(0, 200, 40)]
+bricks = [(x, y) for x in range(0, width, 50) for y in range(0, height-250, 40)]
 game_over = False
 
 # Function to draw the game elements
@@ -33,6 +33,10 @@ def draw_game(frame):
     
 # Main game loop
 cap = cv2.VideoCapture(0)
+
+# Set the window size
+cv2.namedWindow('Brick Breaker', cv2.WND_PROP_FULLSCREEN)
+cv2.setWindowProperty('Brick Breaker', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
 while not game_over:
     ret, frame = cap.read()
